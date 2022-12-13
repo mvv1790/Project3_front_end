@@ -1,23 +1,17 @@
+let round = 1
 let playerScore = 0
 let computerScore = 0
-let round = 1
 
 const choices = ['rock', 'paper', 'scissors']
-
-function gameState() {
-  playerScore = 0
-  computerScore = 0
-  round = 1
-}
 
 function computerTurn() {return[Math.floor(Math.random) * 3]}
 
 function playerTurn(){
-  let player = prompt(`Round ${round}: Make your choice, Rock, Paper or Scissors`)
+  let player = prompt(`Round ${round} of 5: Make your choice, Rock, Paper or Scissors`)
 
   if (!player) return null
   
-  player = player.toLocaleLowerCase().trim()
+  player = player.toLowerCase().trim()
 
   while (choices.indexOf(player) === - 1) {
     console.log("Invalid input. Please try again.")
@@ -26,49 +20,61 @@ function playerTurn(){
   return player
 }
 
-function checkWinner() {
+function gameState() {
+  playerScore = 0
+  computerScore = 0
+  round = 1
+}
+
+function gameScore() {
   if (playerScore > computerScore) {
-    gameState();
-    return "Player wins the game!";
-  } else if (computerScore > playerScore) {
-    gameState();
-    return "Computer wins the game";
+    gameState()
+    return "Player wins the game!"
+  } else if (playerScore < computerScore) {
+    gameState()
+    return "Computer wins the game"
   } else {
-    gameState();
-    return "The game is a draw!";
+    gameState()
+    return "The game is a draw!"
   }
 }
 
 function playGame(player, computer) {
   if (
-    (player === "rock" && computer === "scissors") || (player === "paper" && computer === "rock") || (player === "scissors" && computer === "paper")
-  ) {
-    playerScore = playerScore + 1;
-    console.log(`Player wins Round ${round}`);
-  } else if (
-    (player === "rock" && computer === "rock") || (player === "paper" && computer === "paper") || (player === "scissors" && computer === "scissors")
-  ) {
-    console.log(`Round ${round} is a draw`);
-  } else {
-    computerScore = computerScore + 1;
-    console.log(`Computer wins Round ${round}`);
+  (computer === "rock" && player === "paper") ||
+  (computer === "scissors" && player === "rock") ||
+  (computer === "paper" && player === "scissors")
+  )
+  playerScore = playerScore + 1
+  console.log(`Player wins the round ${round}`)
+  
+  if (
+    (computer === "paper" && player === "rock") ||
+    (computer === "rock" && player === "scissors") ||
+    (computer === "scissors" && player === "paper")
+
+  )
+  computerScore = computerScore + 1
+  console.log(`Computer wins the round ${round}`)
+  if (player === computer) {
+    console.log(`Round ${round} is a draw.`)
   }
 }
 
 function startGame(){
   for (round; round < 6; round++) {
-    const computerSelection = computerTurn();
-    const player = playerTurn();
+    const computerChoice = computerTurn()
+    const player = playerTurn()
 
     if (player === null) {
-      console.log("Game exited.");
-      gameState();
-      return;
+      console.log("Game exited.")
+      gameState()
+      return
     }
-    playGame(player, computerSelection);
+    playGame(player, computerChoice)
   }
-  return console.log(checkWinner());
+  return console.log(gameScore())
 }
 console.log(
-  "Welcome to Rock, Paper, Scissors. Please start the game by typing game() in the console"
+  "Welcome to Rock, Paper, Scissors."
 );
