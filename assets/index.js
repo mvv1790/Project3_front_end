@@ -87,9 +87,10 @@ function startGame() {
     }
 
     play(player, computerTurn);
+    
 
   }
   alert(checkWinner());
   lastMessage()
 }
-
+alert("To begin the game please input startGame() to the console")
