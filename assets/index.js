@@ -14,10 +14,9 @@ function firstMessage(){
 }
 
 function lastMessage(){
-  if (round === 6){
-    alert("Game over")
-    return 
-  }
+
+    alert("Thank you for playing")
+
 }
 
 function playerTurn() {
@@ -30,7 +29,7 @@ function playerTurn() {
   player = player.toLowerCase().trim();
 
   while (choices.indexOf(player) === -1) {
-    console.log("Choice not valid. Please try again.");
+    console.log("Wrong input, please try again.");
     player = playerTurn();
   }
   return player;
@@ -62,16 +61,16 @@ function play(player, computer) {
     (player === "scissors" && computer === "paper")
   ) {
     playerScore = playerScore + 1;
-    console.log(`Player wins Round ${round}`);
+    console.log(`Player wins round ${round}.`);
   } else if (
-    (player === "rock" && computer === "rock") ||
-    (player === "paper" && computer === "paper") ||
-    (player === "scissors" && computer === "scissors")
+    (player === "scissors" && computer === "rock") ||
+    (player === "rock" && computer === "paper") ||
+    (player === "paper" && computer === "scissors")
   ) {
-    console.log(`Round ${round} is a draw`);
+    console.log(`Computer wins round ${round}.`);
   } else {
     computerScore = computerScore + 1;
-    console.log(`Computer wins Round ${round}`);
+    console.log(`Round ${round} is a draw.`);
   }
 }
 
@@ -90,8 +89,7 @@ function startGame() {
     play(player, computerTurn);
 
   }
+  alert(checkWinner());
   lastMessage()
-  return console.log(checkWinner());
-
 }
 
