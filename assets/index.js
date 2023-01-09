@@ -3,25 +3,25 @@ let playerScore = 0
 let computerScore = 0
 let computerChoice
 
-const choices = ["rock", "paper", "scissors"]
+const choices = ["rock", "paper", "scissors", "lizard", "spock"]
 
 function computerPlay() {
   return choices[Math.floor(Math.random() * 3) + 1] 
 }
 
 function firstMessage(){
-  alert(`Welcome to Rock, Paper, Scissors.`)
+  alert(`Welcome to Rock, Paper, Scissors, Lizard, Spock`)
 }
 
 function lastMessage(){
 
-    alert("Thank you for playing")
+  alert("Thank you for playing")
 
 }
 
 function playerTurn() {
   let player = prompt(
-    `Round ${round}: Please type either Rock, Paper or Scissors:`
+    `Round ${round}: Please type one of the following: Rock, Paper, Scissors, Lizard or Spock:`
   );
 
   if (!player) return null
@@ -61,16 +61,30 @@ function checkWinner() {
 
 function play(player, computer) {
   if (
-    (player === "rock" && computer === "scissors") ||
-    (player === "paper" && computer === "rock") ||
-    (player === "scissors" && computer === "paper")
+    (player === "rock" && computer === "scissors")||
+    (player === "rock" && computer === "lizard")||
+    (player === "paper" && computer === "rock")||
+    (player === "paper" && computer === "spock")||
+    (player === "scissors" && computer === "paper")||
+    (player === "scissors" && computer === "lizard")||
+    (player === "lizard" && computer === "paper")||
+    (player === "lizard" && computer === "spock")||
+    (player === "spock" && computer === "scissors")||
+    (player === "spock" && computer === "rock")
   ) {
     playerScore = playerScore + 1
     console.log(`Player wins round ${round}.`)
   } else if (
     (player === "scissors" && computer === "rock") ||
+    (player === "lizard" && computer === "rock")||
     (player === "rock" && computer === "paper") ||
-    (player === "paper" && computer === "scissors")
+    (player === "spock" && computer === "paper")||
+    (player === "paper" && computer === "scissors")||
+    (player === "lizard" && computer === "scissors")||
+    (player === "scissors" && computer === "lizard")||
+    (player === "rock" && computer === "lizard")||
+    (player === "paper" && computer === "spock")||
+    (player === "lizard" && computer === "spock")
   ) {
     computerScore = computerScore + 1
     console.log(`Computer wins round ${round}.`)
